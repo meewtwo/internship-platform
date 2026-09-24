@@ -1,9 +1,15 @@
-<!-- BEGIN:nextjs-agent-rules -->
+## Project: Smart Internship & Career Matching Platform (uni class project)
 
-# This is NOT the Next.js you know
+### Stack
+Next.js App Router + TypeScript + Tailwind, Supabase (auth + Postgres, RLS on), next-intl (en, ru, kk), zod for validation.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+### Rules
+- Small, focused changes. Do one feature at a time, don't touch unrelated files.
+- No new libraries unless I ask.
+- Every user-facing string goes in messages/en.json, ru.json, kk.json. Never hardcode text.
+- Validate with zod on client AND server.
+- Never put secrets in code. Use .env.local. Never commit it.
+- Roles: `student` and `employer` (later `admin`). Check the role on every protected page.
+- DB tables: profiles, student_profiles, companies. Don't rename columns without asking.
+- Keep code simple and readable, this is a student project. Short comments where logic isn't obvious.
+- After changes, tell me which files you changed and how to test.
