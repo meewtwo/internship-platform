@@ -1,7 +1,8 @@
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
+import { requireProfile } from '@/lib/auth/session';
 import { logoutAction } from './actions';
+import AppShell from '@/components/AppShell';
 
 export default async function DashboardPage({
   params
@@ -9,54 +10,66 @@ export default async function DashboardPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const profile = await requireProfile(locale);
   const t = await getTranslations('DashboardPage');
-  const supabase = await createClient();
+  const tRoles = await getTranslations('Roles');
+  const fullName = `${profile.firstName} ${profile.lastName}`.trim();
 
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-  if (authError || !user) {
-    redirect(`/${locale}/login`);
-  }
-
-  const { data: profile, error: profileError } = await supabase
-    .from('profiles')
-    .select('first_name, last_name, role')
-    .eq('id', user.id)
-    .single();
-
-  if (profileError || !profile) {
-    redirect(`/${locale}/login`);
-  }
-
-  const fullName = `${profile.first_name} ${profile.last_name}`;
+  const cardClass =
+    'rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900';
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 dark:bg-black p-6">
-      <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 flex flex-col gap-6">
-        <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold tracking-tight text-black dark:text-zinc-50">
-            {t('title')}
-          </h1>
-        </div>
-
-        <div className="flex flex-col gap-2 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-200 dark:border-zinc-700">
-          <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+    <AppShell locale={locale} role={profile.role} fullName={fullName} logoutAction={logoutAction.bind(null, locale)}>
+      <div className="flex flex-col gap-8">
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
             {t('welcome', { name: fullName })}
-          </p>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 capitalize">
-            {t('role', { role: profile.role })}
+          </h1>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            {t('role', { role: tRoles(profile.role) })}
           </p>
         </div>
 
-        <form action={logoutAction.bind(null, locale)}>
-          <button
-            type="submit"
-            className="w-full flex h-11 items-center justify-center rounded-lg border border-zinc-300 dark:border-zinc-700 font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
-          >
-            {t('logout')}
-          </button>
-        </form>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {profile.role === 'student' ? (
+            <>
+              <Link href="/internships" className={cardClass}>
+                <h2 className="mb-1 font-semibold text-zinc-900 dark:text-white">
+                  {t('cards.browse.title')}
+                </h2>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t('cards.browse.desc')}</p>
+              </Link>
+              <Link href="/applications" className={cardClass}>
+                <h2 className="mb-1 font-semibold text-zinc-900 dark:text-white">
+                  {t('cards.applications.title')}
+                </h2>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t('cards.applications.desc')}</p>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/employer/new" className={cardClass}>
+                <h2 className="mb-1 font-semibold text-zinc-900 dark:text-white">
+                  {t('cards.post.title')}
+                </h2>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t('cards.post.desc')}</p>
+              </Link>
+              <Link href="/employer" className={cardClass}>
+                <h2 className="mb-1 font-semibold text-zinc-900 dark:text-white">
+                  {t('cards.manage.title')}
+                </h2>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t('cards.manage.desc')}</p>
+              </Link>
+            </>
+          )}
+          <Link href="/profile" className={cardClass}>
+            <h2 className="mb-1 font-semibold text-zinc-900 dark:text-white">
+              {t('cards.profile.title')}
+            </h2>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">{t('cards.profile.desc')}</p>
+          </Link>
+        </div>
       </div>
-    </div>
+    </AppShell>
   );
 }

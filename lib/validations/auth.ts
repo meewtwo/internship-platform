@@ -12,7 +12,9 @@ export const registerSchema = z.object({
     .string()
     .min(1, { message: 'lastNameRequired' })
     .regex(nameRegex, { message: 'lastNameInvalid' }),
-  university_id: z.string().optional(),
+  // Not every university uses a numeric student ID, so this is a free-text,
+  // optional field — just capped at a sane length.
+  university_id: z.string().max(30, { message: 'universityIdInvalid' }).optional(),
   email: z
     .string()
     .min(1, { message: 'emailRequired' })
@@ -24,14 +26,6 @@ export const registerSchema = z.object({
 }).refine((data) => data.password === data.confirm_password, {
   message: 'passwordsMismatch',
   path: ['confirm_password'],
-}).refine((data) => {
-  if (data.role === 'student') {
-    return /^\d{9}$/.test(data.university_id || '');
-  }
-  return true;
-}, {
-  message: 'universityIdInvalid',
-  path: ['university_id'],
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;

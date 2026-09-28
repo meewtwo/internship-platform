@@ -1,10 +1,76 @@
 {
+  "Nav": {
+    "login": "Log in",
+    "register": "Get started"
+  },
+  "AppNav": {
+    "dashboard": "Dashboard",
+    "internships": "Internships",
+    "applications": "Applications",
+    "profile": "Profile",
+    "myPostings": "My postings",
+    "logout": "Log out"
+  },
+  "Formats": {
+    "onsite": "On-site",
+    "remote": "Remote",
+    "hybrid": "Hybrid"
+  },
+  "Statuses": {
+    "sent": "Sent",
+    "review": "In review",
+    "interview": "Interview",
+    "accepted": "Accepted",
+    "rejected": "Rejected"
+  },
+  "Roles": {
+    "student": "Student",
+    "employer": "Employer"
+  },
   "HomePage": {
-    "title": "Welcome to Internship Platform",
-    "description": "Your gateway to launching your career with top companies.",
-    "register": "Register",
-    "login": "Login",
-    "languageSwitcher": "Language"
+    "badge": "University project · Smart matching",
+    "title": "Find the internship that actually fits you",
+    "subtitle": "InternMatch connects students with companies looking for real skills — not just keywords in a resume.",
+    "ctaStudent": "I'm a student",
+    "ctaEmployer": "I'm hiring",
+    "featuresTitle": "Built for both sides of the search",
+    "features": {
+      "student": {
+        "title": "For students",
+        "desc": "Build a profile with your real skills, browse open internships, and apply in a couple of clicks."
+      },
+      "employer": {
+        "title": "For employers",
+        "desc": "Post internship openings and reach students whose skills actually match what you need."
+      },
+      "match": {
+        "title": "Skill-based matching",
+        "desc": "See how closely your profile fits an opening before you apply — no more guessing."
+      },
+      "trilingual": {
+        "title": "In your language",
+        "desc": "Use the whole platform in Kazakh, Russian, or English."
+      }
+    },
+    "stepsTitle": "How it works",
+    "steps": {
+      "one": {
+        "title": "Create your account",
+        "desc": "Sign up as a student or an employer and verify your email."
+      },
+      "two": {
+        "title": "Build your profile",
+        "desc": "Add your skills, experience, and what you're looking for."
+      },
+      "three": {
+        "title": "Match and apply",
+        "desc": "Browse openings or candidates and connect directly."
+      }
+    },
+    "ctaTitle": "Ready to get started?",
+    "ctaSubtitle": "It takes less than two minutes to create an account.",
+    "ctaButton": "Create free account",
+    "footer": "Smart Internship & Career Matching Platform — university project"
   },
   "RegisterPage": {
     "title": "Create an Account",
@@ -14,17 +80,20 @@
     "employer": "Employer",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "universityId": "University ID (9 digits)",
+    "universityId": "Student ID (optional)",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",
     "submit": "Register",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log in",
+    "backHome": "← Back to home",
     "errors": {
       "firstNameRequired": "First name is required",
       "firstNameInvalid": "Letters, spaces, and hyphens only",
       "lastNameRequired": "Last name is required",
       "lastNameInvalid": "Letters, spaces, and hyphens only",
-      "universityIdInvalid": "Must be exactly 9 digits",
+      "universityIdInvalid": "Keep it under 30 characters",
       "emailRequired": "Email is required",
       "emailInvalid": "Invalid email address",
       "passwordMin": "Password must be at least 8 characters",
@@ -53,6 +122,9 @@
     "password": "Password",
     "submit": "Login",
     "verifyLink": "Verify your email here",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Create one",
+    "backHome": "← Back to home",
     "errors": {
       "emailRequired": "Email is required",
       "emailInvalid": "Invalid email address",
@@ -62,9 +134,104 @@
     }
   },
   "DashboardPage": {
-    "title": "Dashboard",
     "welcome": "Welcome, {name}",
     "role": "Role: {role}",
-    "logout": "Logout"
+    "cards": {
+      "browse": {
+        "title": "Browse internships",
+        "desc": "Search open positions and filter by skill, format, or pay."
+      },
+      "applications": {
+        "title": "My applications",
+        "desc": "Track the status of everything you've applied to."
+      },
+      "post": {
+        "title": "Post an internship",
+        "desc": "Create a new opening and start receiving applications."
+      },
+      "manage": {
+        "title": "Manage postings",
+        "desc": "Review applicants and update their status."
+      },
+      "profile": {
+        "title": "Your profile",
+        "desc": "Update your account details and skills."
+      }
+    }
+  },
+  "InternshipsPage": {
+    "title": "Browse internships",
+    "subtitle": "Filter by format or skill to find the right fit.",
+    "searchPlaceholder": "Search by title or company",
+    "allFormats": "All formats",
+    "allSkills": "All skills",
+    "paid": "Paid",
+    "empty": "No internships match your filters yet."
+  },
+  "InternshipDetailPage": {
+    "back": "← Back to listings",
+    "loading": "Loading…",
+    "notFound": "This internship couldn't be found.",
+    "matchLabel": "Your match",
+    "addSkillsHint": "Add your skills on your profile to see a real match score.",
+    "paid": "Paid",
+    "noteLabel": "Why are you a good fit? (optional note to the employer)",
+    "notePlaceholder": "Tell them about a relevant project or skill…",
+    "applyButton": "Apply now",
+    "applySuccess": "Application sent! You can track it under \"Applications\".",
+    "alreadyApplied": "You've already applied to this internship.",
+    "errors": {
+      "noteMin": "Write at least 10 characters",
+      "noteMax": "Keep it under 600 characters"
+    }
+  },
+  "EmployerPage": {
+    "title": "My postings",
+    "subtitle": "Review applicants and move them through your hiring stages.",
+    "newButton": "+ New posting",
+    "noPostings": "You haven't posted any internships yet.",
+    "noApplicants": "No applicants yet.",
+    "applicantCount": "{count} applicants"
+  },
+  "EmployerNewPage": {
+    "title": "Post an internship",
+    "subtitle": "Fill in the details students will see.",
+    "submit": "Publish posting",
+    "fields": {
+      "title": "Position title",
+      "company": "Company name",
+      "city": "City",
+      "format": "Format",
+      "duration": "Duration (weeks)",
+      "paid": "This is a paid position",
+      "skills": "Required skills",
+      "description": "Description"
+    },
+    "errors": {
+      "titleRequired": "Title must be at least 3 characters",
+      "companyRequired": "Company name is required",
+      "cityRequired": "City is required",
+      "durationInvalid": "Must be between 1 and 52 weeks",
+      "skillsRequired": "Select at least one skill",
+      "descriptionMin": "Write at least 20 characters"
+    }
+  },
+  "ApplicationsPage": {
+    "title": "My applications",
+    "subtitle": "Track the status of every internship you've applied to.",
+    "empty": "You haven't applied to anything yet.",
+    "browseLink": "Browse open internships →",
+    "unknownPosting": "Posting no longer available"
+  },
+  "ProfilePage": {
+    "title": "Your profile",
+    "subtitle": "This is what employers and the matching score are based on.",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "skillsTitle": "Your skills",
+    "skillsHint": "Select the skills you have — this powers the match score on each internship.",
+    "save": "Save skills",
+    "saved": "Saved!"
   }
 }

@@ -25,6 +25,7 @@ export async function verifyOtpAction(locale: string, email: string, token: stri
 
   const { error: profileError } = await supabase.from('profiles').upsert({
     id: user.id,
+    email: user.email,
     role: role || 'student',
     first_name: first_name || '',
     last_name: last_name || '',
