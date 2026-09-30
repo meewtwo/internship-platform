@@ -98,7 +98,13 @@
       "emailInvalid": "Неверный формат email",
       "passwordMin": "Пароль должен быть не менее 8 символов",
       "passwordsMismatch": "Пароли не совпадают",
-      "general": "Ошибка регистрации. Пожалуйста, попробуйте снова."
+      "general": "Ошибка регистрации. Пожалуйста, попробуйте снова.",
+      "firstNameConstraint": "First name must be at least 2 characters and contain no numbers",
+      "lastNameConstraint": "Last name must be at least 2 characters and contain no numbers",
+      "emailFormat": "Please enter a valid email address",
+      "studentEmailMatchesId": "Student email must strictly match your university ID and @sdu.edu.kz domain",
+      "roleUniversityLogic": "Students must provide a university ID, and employers must leave it empty",
+      "duplicateUniversityId": "This university ID or email is already registered"
     }
   },
   "VerifyPage": {
