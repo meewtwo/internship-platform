@@ -1,4 +1,5 @@
 import express from 'express';
+import { createClient } from '@/lib/supabase/server';
 import { registerSchema, type RegisterInput } from '../lib/validations/auth.ts';
 
 export const router = express.Router();
@@ -13,7 +14,7 @@ export const router = express.Router();
  */
 router.post(
   '/register',
-  async (req: express.Request<{}, {}, RegisterInput>, res: express.Response) => {
+  async (req: express.Request<object, object, RegisterInput>, res: express.Response) => {
     try {
       const result = registerSchema.safeParse(req.body);
       if (!result.success) {
@@ -60,7 +61,7 @@ router.post(
  */
 router.post(
   '/login',
-  async (req: express.Request<{}, {}, { email: string; password: string }>, res: express.Response) => {
+  async (req: express.Request<object, object, { email: string; password: string }>, res: express.Response) => {
     try {
       const { email, password } = req.body;
       const supabase = await createClient();
