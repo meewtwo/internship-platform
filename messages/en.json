@@ -80,7 +80,7 @@
     "employer": "Employer",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "universityId": "Student ID (optional)",
+    "universityId": "Student ID",
     "email": "Email Address",
     "password": "Password",
     "confirmPassword": "Confirm Password",
