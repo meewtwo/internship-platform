@@ -80,7 +80,7 @@
     "employer": "Жұмыс берушімін",
     "firstName": "Аты",
     "lastName": "Тегі",
-    "universityId": "Студенттік ID (міндетті емес)",
+    "universityId": "Студенттік ID",
     "email": "Электрондық пошта",
     "password": "Құпия сөз",
     "confirmPassword": "Құпия сөзді растау",
