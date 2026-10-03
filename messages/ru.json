@@ -80,7 +80,7 @@
     "employer": "Работодатель",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "universityId": "Студенческий ID (необязательно)",
+    "universityId": "Студенческий ID",
     "email": "Электронная почта",
     "password": "Пароль",
     "confirmPassword": "Подтвердите пароль",
